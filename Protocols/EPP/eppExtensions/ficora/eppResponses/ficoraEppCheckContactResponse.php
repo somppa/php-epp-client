@@ -11,8 +11,8 @@ class ficoraEppCheckContactResponse extends eppCheckContactResponse {
         $result = null;
         if ($this->getResultCode() == self::RESULT_SUCCESS) {
             $xpath = $this->xPath();
-            $contacts = $xpath->query('/epp:epp/epp:response/epp:resData/contact:chkData/contact:cd/contact:name');
-            $checks = $xpath->query('/epp:epp/epp:response/epp:resData/contact:chkData/contact:cd/contact:name/@avail');
+            $contacts = $xpath->query('/epp:epp/epp:response/epp:resData/contact:chkData/contact:cd/contact:id');
+            $checks = $xpath->query('/epp:epp/epp:response/epp:resData/contact:chkData/contact:cd/contact:id/@avail');
             foreach ($contacts as $idx => $contact) {
                 $available = $checks->item($idx)->nodeValue;
                 switch ($available) {
