@@ -1,6 +1,7 @@
 <?php
 $this->addExtension('ficora','http://www.ficora.fi/epp/ficora');
 
+include_once(dirname(__FILE__) . '/eppData/ficoraEppContact.php');
 include_once(dirname(__FILE__) . '/eppData/ficoraEppContactPostalInfo.php');
 include_once(dirname(__FILE__) . '/eppData/ficoraEppDomain.php');
 
