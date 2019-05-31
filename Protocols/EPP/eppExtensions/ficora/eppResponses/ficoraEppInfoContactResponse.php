@@ -26,6 +26,16 @@ class ficoraEppInfoContactResponse extends eppInfoContactResponse {
 
     /**
      *
+     * @return ficoreEppContact
+     */
+    public function getContact() {
+        $postalinfo = $this->getContactPostalInfo();
+        $contact = new ficoraEppContact($postalinfo, $this->getContactEmail(), $this->getContactVoice(), $this->getContactFax());
+        return $contact;
+    }
+
+    /**
+     *
      * @return int|null role
      */
     public function getContactRole()
@@ -87,22 +97,22 @@ class ficoraEppInfoContactResponse extends eppInfoContactResponse {
                 /* @var $addr \DOMElement */
                 $testcity = $addr->getElementsByTagName('city');
                 /* @var $postalresult \DOMElement */
-                
+
                 if ($testcity->length > 0) {
                     $city = $testcity->item(0)->nodeValue;
                 }
                 $testcc = $addr->getElementsByTagName('cc');
-                
+
                 if ($testcc->length > 0) {
                     $country = $testcc->item(0)->nodeValue;
                 }
                 $testpc = $addr->getElementsByTagName('pc');
-                
+
                 if ($testpc->length > 0) {
                     $zipcode = $testpc->item(0)->nodeValue;
                 }
                 $testsp = $addr->getElementsByTagName('sp');
-                
+
                 if ($testsp->length > 0) {
                     $province = $testsp->item(0)->nodeValue;
                 }
@@ -146,7 +156,7 @@ class ficoraEppInfoContactResponse extends eppInfoContactResponse {
      * Returns value of first matching element or default value if no matches
      * @param  \DOMElement $element      Element to query
      * @param  string      $tagName      Tag name
-     * @param  mixed      $defaultValue Default value 
+     * @param  mixed      $defaultValue Default value
      * @return mixed                    Element value or default value
      */
     private function getElementValueByTagNameOrDefault(\DOMElement $element, $tagName, $defaultValue = null)
