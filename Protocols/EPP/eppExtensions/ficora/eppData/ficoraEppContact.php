@@ -10,7 +10,7 @@ class ficoraEppContact extends eppContact
             return null;
         }
         if ($number{0} != '+') {
-            throw new eppException('Phone number ' . $number . ' is not valid for EPP. Valid format is +cc.nnnnnnnnnnn');
+            throw new eppException('Phone number ' . $number . ' is not valid for EPP. Valid format is +ccnnnnnnnnnnn');
         }
         return $number;
     }
