@@ -143,4 +143,12 @@ class ficoraEppContactPostalInfo extends eppContactPostalInfo
         return $this->registerNumber;
     }
 
+    /**
+     *
+     * @return array
+     */
+
+    public function jsonSerialize() {
+        return get_object_vars($this) + parent::jsonSerialize();
+    }
 }

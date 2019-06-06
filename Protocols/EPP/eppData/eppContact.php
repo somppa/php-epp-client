@@ -7,7 +7,9 @@ namespace Metaregistrar\EPP;
  *
  */
 
-class eppContact {
+use JsonSerializable;
+
+class eppContact implements JsonSerializable {
 
     #
     # These status values cannot be set, only viewed
@@ -282,5 +284,14 @@ class eppContact {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
+    }
+
+    /**
+     *
+     * @return array
+     */
+
+    public function jsonSerialize() {
+        return get_object_vars($this);
     }
 }

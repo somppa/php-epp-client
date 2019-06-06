@@ -6,8 +6,9 @@ namespace Metaregistrar\EPP;
  *
  *
  */
+use JsonSerializable;
 
-class eppContactPostalInfo {
+class eppContactPostalInfo implements JsonSerializable {
     private $name;
     private $organisationName;
     private $street = array();
@@ -213,5 +214,14 @@ class eppContactPostalInfo {
             throw new eppException('PostalInfo type can only be INT or LOC');
         }
         $this->type = $type;
+    }
+
+    /**
+     *
+     * @return array
+     */
+
+    public function jsonSerialize() {
+        return get_object_vars($this);
     }
 }
