@@ -70,6 +70,15 @@ class ficoraEppCreateContactRequest extends eppCreateContactRequest {
         // Ficora needs the xmlns attribute in the contact object
         $this->contactobject->setAttribute('xmlns:contact','urn:ietf:params:xml:ns:contact-1.0');
         $this->addSessionId();
+        $this->setLegalemail($createinfo->getEmail());
+
+        $postalInfo = $createinfo->getPostalInfo(0);
+        $this->setFirstname($postalInfo->getFirstName());
+        $this->setLastname($postalInfo->getLastName());
+        $this->setIsfinnish($postalInfo->getIsFinnish());
+        if ($postalInfo->getIdentity()) $this->setIdentity($postalInfo->getIdentity());
+        if ($postalInfo->getBirthDate()) $this->setBirthdate($postalInfo->getBirthDate());
+        if ($postalInfo->getRegisterNumber()) $this->setRegisternumber($postalInfo->getRegisterNumber());
     }
 
     /**
