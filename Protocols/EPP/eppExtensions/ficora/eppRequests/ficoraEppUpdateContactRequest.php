@@ -30,10 +30,12 @@ class ficoraEppUpdateContactRequest extends eppUpdateContactRequest
      * @param string $contactid
      * @param eppContact $addInfo
      * @param eppContact $removeInfo
-     * @param eppContact $updateInfo
+     * @param ficoraEppContact $updateInfo
      */
     public function updateContact($contactid, $addInfo, $removeInfo, $updateInfo) {
         parent::updateContact($contactid, $addInfo, $removeInfo, $updateInfo);
+        $contact = $this->getElementsByTagName('contact:chg')->item(0);
+        $contact->appendChild($this->createElement('contact:legalemail', $updateInfo->getEmail()));
 
         /** @var ficoraEppContactPostalInfo $postalInfo */
         $postalInfo = $updateInfo->getPostalInfo(0);
@@ -41,5 +43,9 @@ class ficoraEppUpdateContactRequest extends eppUpdateContactRequest
         $contactPostalInfo = $this->getElementsByTagName('contact:postalInfo')->item(0);
         $contactPostalInfo->appendChild($this->createElement('contact:firstname', $postalInfo->getFirstName()));
         $contactPostalInfo->appendChild($this->createElement('contact:lastname', $postalInfo->getLastName()));
+        $contactPostalInfo->appendChild($this->createElement('contact:isfinnish', $postalInfo->getIsFinnish()));
+        $contactPostalInfo->appendChild($this->createElement('contact:identity', $postalInfo->getIdentity()));
+        $contactPostalInfo->appendChild($this->createElement('contact:birthDay', $postalInfo->getBirthDate()));
+        $contactPostalInfo->appendChild($this->createElement('contact:registernumber', $postalInfo->getRegisterNumber()));
     }
 }
