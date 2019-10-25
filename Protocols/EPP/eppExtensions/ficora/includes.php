@@ -31,3 +31,6 @@ $this->addCommandResponse('Metaregistrar\EPP\eppCheckContactRequest', 'Metaregis
 
 include_once(dirname(__FILE__) . '/eppRequests/ficoraEppCreateContactRequest.php');
 $this->addCommandResponse('Metaregistrar\EPP\ficoraEppCreateContactRequest', 'Metaregistrar\EPP\eppCreateContactResponse');
+
+include_once(dirname(__FILE__) . '/eppRequests/ficoraEppTransferRequest.php');
+$this->addCommandResponse('Metaregistrar\EPP\ficoraEppTransferRequest', 'Metaregistrar\EPP\eppTransferResponse');
